@@ -1,9 +1,11 @@
 [package]
 name = "chia-node"
 version = "0.1.0"
+description = "An API wrapper for Chia node daemons"
+license = "MIT"
+repository = "https://gitlab.cronce.io/foss/chia-node-rs"
+authors = ["Mike Cronce <mikequadra-tec.net>"]
 edition = "2018"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 chrono = {version = "0.4", features = ["serde"]}
