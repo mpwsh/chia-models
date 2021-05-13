@@ -39,7 +39,7 @@ impl Client {
 
 	async fn cmd(&self, command: &str) -> Result<Response, reqwest::Error> {
 		let url = self.make_url(command);
-		self.http.post(url).header("Content-Type", "application/json").body("{}").send().await
+		self.http.post(&url).header("Content-Type", "application/json").body("{}").send().await
 	}
 
 	fn make_url(&self, command: &str) -> String {
