@@ -15,7 +15,7 @@ pub struct BlockchainState {
 	pub genesis_challenge_initialized: bool,
 	pub mempool_size: u8,
 	pub peak: BlockchainStatePeak,
-	pub space: u64,
+	pub space: f64,
 	pub sub_slot_iters: u32,
 	pub sync: BlockchainStateSync
 }
