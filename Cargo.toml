@@ -1,18 +1,14 @@
 [package]
-name = "chia-node"
+name = "chia_models"
 version = "0.4.0"
-description = "An API wrapper for Chia node daemons"
+description = "chia models without any logic"
 license = "MIT"
-repository = "https://gitlab.cronce.io/foss/chia-node-rs"
-authors = ["Mike Cronce <mikequadra-tec.net>"]
-edition = "2018"
+repository = "https://github.com/mpwsh/chia-models"
+authors = ["mpw <x@mpw.sh>"]
+edition = "2021"
 
 [dependencies]
 chrono = {version = "0.4", features = ["serde"]}
-reqwest = {version = "0.11", default_features = false, features = ["json", "rustls-tls"]}
 serde = {version = "1", features = ["derive"]}
 serde_json = "1"
 serde_with = {version = "1.9", features = ["chrono"]}
-thiserror = "1"
-tokio = {version = "1", features = ["fs"]}
-

@@ -1,8 +1,5 @@
-mod error;
-pub use error::Error;
-
+pub mod common;
 pub mod fullnode;
 pub mod harvester;
-
-pub(crate) mod util;
-
+pub mod wallet;
+pub mod util;

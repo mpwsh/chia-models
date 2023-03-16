@@ -1,49 +1,45 @@
-use std::path::Path;
+use chrono::DateTime;
+use chrono::Utc;
+use serde::Deserialize;
+use serde_json::Value;
+use serde_with::chrono::datetime_utc_ts_seconds_from_any;
 
-use reqwest::ClientBuilder;
-use reqwest::Response;
-
-use crate::Error;
-use crate::util::load_pem_pair;
-
-mod model;
-pub use model::Plots;
-use model::GetPlotsResponse;
-
-pub struct Client {
-	host: String,
-	port: u16,
-	http: reqwest::Client
+#[allow(dead_code)]
+#[derive(Debug, Deserialize)]
+pub struct GetPlotsResponse {
+    pub failed_to_open_filenames: Vec<String>,
+    pub not_found_filenames: Vec<String>,
+    pub plots: Vec<Plot>,
+    pub success: bool,
 }
 
-impl Client {
-	pub async fn new(host: &str, port: u16, key_file: impl AsRef<Path>, cert_file: impl AsRef<Path>) -> Result<Self, Error> {
-		let identity = load_pem_pair(key_file, cert_file).await?;
-		let http = ClientBuilder::new()
-			.danger_accept_invalid_certs(true)
-			//.danger_accept_invalid_hostnames(true)
-			.identity(identity)
-			.build()?;
-		Ok(Self{
-			host: host.to_string(),
-			port: port,
-			http: http
-		})
-	}
-
-	pub async fn get_plots(&self) -> Result<Plots, Error> {
-		let response = self.cmd("get_plots").await?;
-		let response: GetPlotsResponse = response.json().await?;
-		Ok(response.into())
-	}
-
-	async fn cmd(&self, command: &str) -> Result<Response, reqwest::Error> {
-		let url = self.make_url(command);
-		self.http.post(&url).header("Content-Type", "application/json").body("{}").send().await
-	}
-
-	fn make_url(&self, command: &str) -> String {
-		format!("https://{}:{}/{}", &self.host, self.port, &command)
-	}
+#[derive(Debug, Deserialize)]
+pub struct Plots {
+    pub failed_to_open_filenames: Vec<String>,
+    pub not_found_filenames: Vec<String>,
+    pub plots: Vec<Plot>,
 }
 
+impl From<GetPlotsResponse> for Plots {
+    fn from(other: GetPlotsResponse) -> Self {
+        Self {
+            failed_to_open_filenames: other.failed_to_open_filenames,
+            not_found_filenames: other.not_found_filenames,
+            plots: other.plots,
+        }
+    }
+}
+
+#[derive(Debug, Deserialize)]
+pub struct Plot {
+    pub file_size: u64,
+    pub filename: String,
+    #[serde(rename = "plot-seed")]
+    pub plot_seed: String,
+    pub plot_public_key: String,
+    pub pool_contract_puzzle_hash: Value,
+    pub pool_public_key: String,
+    pub size: u8,
+    #[serde(with = "datetime_utc_ts_seconds_from_any")]
+    pub time_modified: DateTime<Utc>,
+}
