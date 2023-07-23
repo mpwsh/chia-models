@@ -9,6 +9,7 @@ pub struct NetworkInfoResponse {
     pub network_name: String,
     pub network_prefix: String,
     pub success: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub error: Option<String>,
 }
 
@@ -16,6 +17,7 @@ pub struct NetworkInfoResponse {
 pub struct BlockchainStateResponse {
     pub blockchain_state: Option<BlockchainState>,
     pub success: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub error: Option<String>,
 }
 
@@ -44,6 +46,7 @@ pub struct MempoolMinFees {
 pub struct NetworkSpaceResponse {
     pub space: Option<u128>,
     pub success: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub error: Option<String>,
 }
 
@@ -88,6 +91,7 @@ pub struct Sync {
 pub struct BlockCountMetricsResponse {
     pub metrics: Option<BlockCountMetrics>,
     pub success: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub error: Option<String>,
 }
 
@@ -102,6 +106,7 @@ pub struct BlockCountMetrics {
 pub struct MemPoolTxIdsRespose {
     pub success: bool,
     pub tx_ids: Option<Vec<String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub error: Option<String>,
 }
 
@@ -109,6 +114,7 @@ pub struct MemPoolTxIdsRespose {
 pub struct BlockHeadersResponse {
     pub headers: Option<Vec<BlockHeader>>,
     pub success: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub error: Option<String>,
 }
 
@@ -197,6 +203,7 @@ pub struct ProofOfSpace {
 pub struct MemPoolItemsResponse {
     pub mempool_items: Option<HashMap<String, MemPoolItem>>,
     pub success: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub error: Option<String>,
 }
 
@@ -204,6 +211,7 @@ pub struct MemPoolItemsResponse {
 pub struct MemPoolItemResponse {
     pub mempool_item: Option<MemPoolItem>,
     pub success: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub error: Option<String>,
 }
 #[derive(Default, Debug, Clone, Serialize, Deserialize)]
@@ -222,6 +230,7 @@ pub struct MemPoolItem {
 pub struct NpcResult {
     pub conds: Conds,
     pub cost: u64,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub error: Option<String>,
 }
 /*
@@ -269,6 +278,7 @@ pub struct Spend {
 pub struct BlockSpendsResponse {
     pub block_spends: Option<Vec<CoinSpend>>,
     pub success: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub error: Option<String>,
 }
 
@@ -296,6 +306,7 @@ pub struct Coin {
 pub struct BlockResponse {
     pub block: Option<Block>,
     pub success: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub error: Option<String>,
 }
 
@@ -303,6 +314,7 @@ pub struct BlockResponse {
 pub struct BlocksResponse {
     pub blocks: Option<Vec<Block>>,
     pub success: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub error: Option<String>,
 }
 #[derive(Default, Debug, Clone, Serialize, Deserialize)]
@@ -374,6 +386,7 @@ pub struct Proofs {
 pub struct BlockRecordResponse {
     pub block_record: Option<BlockRecord>,
     pub success: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub error: Option<String>,
 }
 
@@ -381,6 +394,7 @@ pub struct BlockRecordResponse {
 pub struct BlockRecordsResponse {
     pub block_records: Option<Vec<BlockRecord>>,
     pub success: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub error: Option<String>,
 }
 
@@ -428,6 +442,7 @@ pub struct StateTransitionsResponse {
     pub additions: Option<Vec<CoinRecord>>,
     pub removals: Option<Vec<CoinRecord>>,
     pub success: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub error: Option<String>,
 }
 #[derive(Default, Debug, Clone, Serialize, Deserialize)]
@@ -440,6 +455,7 @@ pub struct StateTransitions {
 pub struct CoinRecordResponse {
     pub coin_record: Option<CoinRecord>,
     pub success: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub error: Option<String>,
 }
 
@@ -447,6 +463,7 @@ pub struct CoinRecordResponse {
 pub struct CoinRecordsResponse {
     pub coin_records: Option<Vec<CoinRecord>>,
     pub success: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub error: Option<String>,
 }
 #[derive(Default, Debug, Clone, Serialize, Deserialize)]
@@ -464,6 +481,7 @@ pub struct CoinRecord {
 pub struct CoinSolutionResponse {
     pub coin_solution: Option<CoinSolution>,
     pub success: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub error: Option<String>,
 }
 
@@ -479,6 +497,7 @@ pub struct SignagePointOrEos {
     pub time_received: Option<f32>,
     pub reverted: Option<bool>,
     pub success: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub error: Option<String>,
     pub eos: Option<FinishedSubSlot>,
     pub signage_point: Option<SignagePoint>,
