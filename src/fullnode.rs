@@ -262,7 +262,7 @@ pub struct Spend {
     pub create_coin: Vec<(String, u64, Option<String>)>,
     pub height_relative: Option<u64>,
     pub puzzle_hash: String,
-    pub seconds_relative: u64,
+    pub seconds_relative: Option<u64>,
 }
 
 #[derive(Default, Debug, Clone, Serialize, Deserialize)]

@@ -1,6 +1,6 @@
 [package]
 name = "chia_models"
-version = "0.4.0"
+version = "0.4.1"
 description = "chia models without any logic"
 license = "MIT"
 repository = "https://github.com/mpwsh/chia-models"
